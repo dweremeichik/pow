@@ -4,7 +4,7 @@ otp_release: 21.0
 jobs:
   include:
     - stage: test
-      elixir: 1.6
+      elixir: 1.7
       otp_release: 20.0
       script: &test_scripts
         - mix test

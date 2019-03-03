@@ -162,7 +162,7 @@ defmodule Pow.Ecto.Context do
     clauses  = normalize_user_id_field_value(user_mod, clauses)
     opts     = prefix_opts(config)
 
-    repo(config).get_by(user_mod, clauses, opts)
+    Config.repo!(config).get_by(user_mod, clauses, opts)
   end
 
   defp normalize_user_id_field_value(user_mod, clauses) do
@@ -212,10 +212,6 @@ defmodule Pow.Ecto.Context do
     {:ok, user}
   end
 
-  # TODO: Remove by 1.1.0
-  @deprecated "Use `Pow.Config.repo!/1` instead"
-  defdelegate repo(config), to: Config, as: :repo!
-
   defp prefix_opts(config) do
     config
     |> Config.get(:repo_opts, [])
@@ -225,8 +221,4 @@ defmodule Pow.Ecto.Context do
       prefix -> [prefix: prefix]
     end
   end
-
-  # TODO: Remove by 1.1.0
-  @deprecated "Use `Pow.Config.user!/1` instead"
-  defdelegate user_schema_mod(config), to: Config, as: :user!
 end
