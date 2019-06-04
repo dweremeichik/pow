@@ -188,7 +188,7 @@ defmodule Pow.Ecto.Context do
   """
   @spec do_insert(changeset(), Config.t()) :: {:ok, user()} | {:error, changeset()}
   def do_insert(changeset, config) do
-    opts = repo_opts(config, [:prefix])
+    opts = repo_opts(config, [:prefix, :on_conflict, :conflict_target])
 
     changeset
     |> Config.repo!(config).insert(opts)
